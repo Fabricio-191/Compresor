@@ -38,7 +38,7 @@ Archivo comprimido: F:\Programacion\Compresor\test\Cuestionario memoria cache.tx
 
 Resultado:
 
-```js
+```
 Cuestionario memoria cache.txt                   19 KB
 Cuestionario memoria cache.txt.shannon           11 KB 
 ```
@@ -86,7 +86,7 @@ PS F:\Programacion>
 
 Resultado:
 
-```javascript
+```
 Cuestionario memoria cache.txt                   19 KB
 Cuestionario memoria cache.txt.shannon           11 KB 
 Cuestionario memoria cache.txt.decompressed      19 KB
@@ -97,24 +97,20 @@ Cuestionario memoria cache.txt.decompressed      19 KB
 Comprimiendo un PDF
 
 ```powershell
-PS F:\Programacion\Compresor> npm start
-
-> start
-> ts-node src/index.ts
-
+PS F:\Programacion> ts-node "f:\Programacion\Compresor\src\index.ts"
 Que desea hacer?
 1. Comprimir
 2. Descomprimir
 3. Test
 
 1
-Ingrese la ruta al archivo a comprimir: F:\Programacion\Compresor\test\Plan_de_Estudios_I_Licenciatura_en_Ciencias_de_la_Computacion.pdf
-Cantidad de codificaciones de shannon: 28308
-Tamaño original (en bits): 392576
-Tamaño comprimido (en bits): 1432993 (% 365.0 del tamaño original)
-Tamaño de la cabecera (en bits): 1369662
-Tamaño del texto comprimido (en bits): 63331 (% 16.1 del tamaño original)
-Archivo comprimido: F:\Programacion\Compresor\test\Plan_de_Estudios_I_Licenciatura_en_Ciencias_de_la_Computacion.pdf.shannon
+Ingrese la ruta al archivo a comprimir: F:\Programacion\Compresor\test\CALENDARIO23-24.pdf
+Cantidad de codificaciones de shannon: 65534
+Tamaño original (en bits): 6861128
+Tamaño comprimido (en bits): 20361660 (% 296.8 del tamaño original)
+Tamaño de la cabecera (en bits): 17012915
+Tamaño del texto comprimido (en bits): 3348745 (% 48.8 del tamaño original)
+Archivo comprimido: F:\Programacion\Compresor\test\CALENDARIO23-24.pdf.shannon
 ```
 
-Aqui se puede apreciar como el tamaño de la cabecera es extremadamente grande
+Aqui se puede apreciar como el tamaño de la cabecera es extremadamente grande, tambien se puede observar que en total hay 65534 codificaciones de shannon (el maximo es 65535) esto se debe a que aparecen casi todas las combinaciones de 2 simbolos ASCII (256 * 256 = 65536) debido a que los archivos PDF la entropia es muy alta
