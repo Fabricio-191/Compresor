@@ -7,9 +7,7 @@
 5. Ejecutar el comando `npm i` para instalar las dependencias
 6. Para ejecutar el proyecto usar el comando `npm start`
 
-Notas: Hice un gist por que me parecio innecesario crear un nuevo repositorio solo para esto
-
-### Observaciones
+Observaciones
 
 Debido al tamaño de la cabecera es muy ineficiente para archivos pequeños, y debido al que es muy dificil trabajar a nivel de bit en javascript del modo requerido el trabajo sobre los datos se realizo sobre una cadena en binario, lo cual es muy ineficiente en terminos de memoria y conlleva a que sea muy lento para archivos muy grandes
 
