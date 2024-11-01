@@ -129,7 +129,7 @@ class ShannonCompressor {
 	}
 
 	// Serializa los códigos de Shannon
-	public serialize(writer: BinaryWriter, pseudoASCII: Record<string, string>, minSymbolLength: number): void {
+	public toBinary(writer: BinaryWriter, pseudoASCII: Record<string, string>, minSymbolLength: number): void {
 		const entries = Object.entries(this.codes);
 		writer.addNumber(entries.length, minSymbolLength); // cantidad de simbolos
 
@@ -218,7 +218,7 @@ class MarkovCompressor  {
 		return encoded;
 	}
 
-	public serialize(): string {
+	public toBinary(): string {
 		const writer = new BinaryWriter(); // crea un escritor de bits
 
 		writer.addByte(this.symbols.length); // se agrega la cantidad de símbolos en un byte (máximo 255 símbolos)
@@ -238,7 +238,7 @@ class MarkovCompressor  {
 			writer.addCode(this.pseudoASCII[key[0]!]!); // se añade el pseudoASCII del primer caracter de la key
 			writer.addCode(this.pseudoASCII[key[1]!]!); // se añade el pseudoASCII del segundo caracter de la key
 	
-			codification.serialize(writer, this.pseudoASCII, this.minSymbolLength); // se escribe la codificación de shannon
+			codification.toBinary(writer, this.pseudoASCII, this.minSymbolLength); // se escribe la codificación de shannon
 		}
 		console.log('Tamaño despues de las codificaciones de shannon:', writer.size);
 
@@ -249,7 +249,7 @@ class MarkovCompressor  {
 export default function encode(str: string): Buffer {
 	const markovShannon = new MarkovCompressor(str); // crea un compresor de Markov
 
-	const header = markovShannon.serialize(); // serializa el compresor de Markov (en una string binaria)
+	const header = markovShannon.toBinary(); // serializa el compresor de Markov (en una string binaria)
 	const encoded = markovShannon.encode(str); // codifica el string (en una string binaria)
 	const all = header + encoded; // une la cabecera y el texto codificado
 

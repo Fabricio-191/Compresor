@@ -56,7 +56,7 @@ class ShannonDecompressor {
 	}
 
 	// se obtiene la codificacion de shannon a partir de el binario
-	public static fromSerialized(reader: BinaryReader, pseudoASCII: Record<string, string>, minSymbolLength: number): ShannonDecompressor {
+	public static fromBinary(reader: BinaryReader, pseudoASCII: Record<string, string>, minSymbolLength: number): ShannonDecompressor {
 		const symbolsAmount = reader.readNumber(minSymbolLength); // se lee la cantidad de simbolos
 		const codes: Record<string, string> = {};
 
@@ -108,7 +108,7 @@ class MarkovDecompressor {
 	}
 
 	// se obtiene el descompresor de Markov a partir del binario
-	static fromSerialized(reader: BinaryReader): [MarkovDecompressor, string] {
+	static fromBinary(reader: BinaryReader): [MarkovDecompressor, string] {
 		const symbols: string[] = []; // lista de simbolos
 		const codifications: Record<string, ShannonDecompressor> = {}; // diccionario de codificaciones de Shannon
 
@@ -135,7 +135,7 @@ class MarkovDecompressor {
 				pseudoASCII[reader.readCode(minSymbolLength)]!;
 			
 			// se obtiene y guarda la codificacion de Shannon en el diccionario
-			codifications[key] = ShannonDecompressor.fromSerialized(reader, pseudoASCII, minSymbolLength);
+			codifications[key] = ShannonDecompressor.fromBinary(reader, pseudoASCII, minSymbolLength);
 		}
 
 		// se crea el descompresor de Markov y se devuelve junto con el resto de la cadena
@@ -162,7 +162,7 @@ export default function decode(buffer: Buffer): string {
 	}
 
 	// se crea un descompresor de Markov a partir de los datos serializados y se devuelve el resto de la cadena
-	const [decompressor, str] = MarkovDecompressor.fromSerialized(reader);
+	const [decompressor, str] = MarkovDecompressor.fromBinary(reader);
 	// se decodifica la cadena y se devuelve
 	return decompressor.decode(str);
 }
