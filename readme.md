@@ -1,6 +1,6 @@
 ## Instrucciones de uso
 
-1. Descargar proyecto y descomprimir
+1. Descargar o clonar proyecto y descomprimir
 2. Descargar [Node.js](https://nodejs.org/en/)
 3. Actualizar variables de entorno en caso de ser necesario
 4. Abrir una terminal en la ruta del proyecto
